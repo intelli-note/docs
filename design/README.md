@@ -8,6 +8,8 @@
 
 # 产品原型设计
 
+> 具体页面截图参考[Prototype目录](./prototype)下的文件
+
 ## 首页
 
 ![首页](./images/首页.png)
