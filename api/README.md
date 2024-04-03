@@ -95,7 +95,7 @@ GET /users/licence
 |» code|integer|true|none|业务码|none|
 |» msg|string|false|none|业务处理信息|none|
 |» data|object|false|none|数据|none|
-|»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»» username|string|true|none|用户名|none|
 |»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -191,7 +191,7 @@ gender: "{% mock 'natural', '0', 2 %}"
 |---|---|---|---|---|---|
 |» code|integer|true|none|业务码|none|
 |» msg|string|false|none|业务处理信息|none|
-|» data|[user](#schemauser)|false|none|交易对象|账单创建时另外一方用户信息|
+|» data|[user](#schemauser)|false|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»» username|string|true|none|用户名|none|
 |»» avatar|string|true|none|用户头像|头像图片URL|
@@ -297,7 +297,7 @@ GET /users
 |»» page_size|integer|true|none|每页的数量|none|
 |»» total|integer|true|none|总数|none|
 |»» list|[[user](#schemauser)]|true|none|当前页的数据列表|none|
-|»»» 交易对象|[user](#schemauser)|false|none|交易对象|账单创建时另外一方用户信息|
+|»»» 交易对象|[user](#schemauser)|false|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»» username|string|true|none|用户名|none|
 |»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -406,7 +406,7 @@ GET /follows
 |»» page_size|integer|true|none|每页的数量|none|
 |»» total|integer|true|none|总数|none|
 |»» list|[[user](#schemauser)]|true|none|当前页的数据列表|none|
-|»»» 交易对象|[user](#schemauser)|false|none|交易对象|账单创建时另外一方用户信息|
+|»»» 交易对象|[user](#schemauser)|false|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»» username|string|true|none|用户名|none|
 |»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -585,7 +585,7 @@ GET /followers
 |»» page_size|integer|true|none|每页的数量|none|
 |»» total|integer|true|none|总数|none|
 |»» list|[[user](#schemauser)]|true|none|当前页的数据列表|none|
-|»»» 交易对象|[user](#schemauser)|false|none|交易对象|账单创建时另外一方用户信息|
+|»»» 交易对象|[user](#schemauser)|false|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»» username|string|true|none|用户名|none|
 |»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -603,262 +603,6 @@ GET /followers
 |»» is_last_page|boolean|true|none|是否为尾页|none|
 |»» first_page|integer|true|none|首页页码|none|
 |»» last_page|integer|true|none|尾页页码|none|
-
-状态码 **401**
-
-|名称|类型|必选|约束|中文名|说明|
-|---|---|---|---|---|---|
-|» msg|string|true|none|响应信息|none|
-
-## GET 分页获取用户账单列表
-
-GET /bills
-
-### 请求参数
-
-|名称|位置|类型|必选|中文名|说明|
-|---|---|---|---|---|---|
-|page_num|query|integer| 是 ||页码，从1开始|
-|page_size|query|integer| 是 ||每页数量|
-
-> 返回示例
-
-> 成功
-
-```json
-{
-  "code": 200,
-  "data": {
-    "pages": 1,
-    "page_num": 1,
-    "page_size": 10,
-    "total": 2,
-    "list": [
-      {
-        "id": "310000200305061461",
-        "type": 1,
-        "amount": "127.58",
-        "note": {
-          "id": "140000201208153623",
-          "author": {
-            "id": "230000201502117588",
-            "username": "陈霞",
-            "avatar": "http://dummyimage.com/234x60",
-            "biography": "长史经好细争命全增争变西面江做北越。",
-            "gender": "未知",
-            "follows_num": "8447",
-            "followers_num": "8977万",
-            "state": {
-              "follow_status": false,
-              "self_status": false
-            }
-          },
-          "title": "身本后公以快率",
-          "cover": "http://dummyimage.com/728x90",
-          "view_num": "2761w",
-          "star_num": "4690w",
-          "comment_num": "6709",
-          "create_time": "1970-08-13 00:44:11",
-          "update_time": "2024-03-28 14:55:17"
-        },
-        "counterpart": {
-          "id": "530000199701232897",
-          "username": "赖刚",
-          "avatar": "http://dummyimage.com/160x600",
-          "biography": "科品生转王理完毛专点干除准走。",
-          "gender": "女",
-          "follows_num": "5622",
-          "followers_num": "8744亿",
-          "state": {
-            "follow_status": false,
-            "self_status": false
-          }
-        },
-        "create_time": "2024-03-28 14:55:17"
-      },
-      {
-        "id": "120000200908299334",
-        "type": 2,
-        "amount": "148.25",
-        "note": {
-          "id": "460000199011195381",
-          "author": {
-            "id": "150000201308044258",
-            "username": "马超",
-            "avatar": "http://dummyimage.com/120x600",
-            "biography": "条军红育验必眼打直党证使边存红传保。",
-            "gender": "男",
-            "follows_num": "7282",
-            "followers_num": "9330亿",
-            "state": {
-              "follow_status": false,
-              "self_status": false
-            }
-          },
-          "title": "离长家面运",
-          "cover": "http://dummyimage.com/728x90",
-          "view_num": "9482w",
-          "star_num": "8433w",
-          "comment_num": "5063w",
-          "create_time": "1994-08-03 22:36:20",
-          "update_time": "2024-03-28 14:55:17"
-        },
-        "counterpart": {
-          "id": "630000198506207644",
-          "username": "白勇",
-          "avatar": "http://dummyimage.com/728x90",
-          "biography": "安油我什叫标件断方非月整实合儿。",
-          "gender": "女",
-          "follows_num": "3590",
-          "followers_num": "3780亿",
-          "state": {
-            "follow_status": false,
-            "self_status": false
-          }
-        },
-        "create_time": "2024-03-28 14:55:17"
-      }
-    ],
-    "size": 2,
-    "has_previous_page": false,
-    "has_next_page": false,
-    "is_first_page": true,
-    "is_last_page": true,
-    "first_page": 1,
-    "last_page": 1
-  }
-}
-```
-
-> 登录态失效
-
-```json
-{
-  "msg": "用户未登录或登录过期"
-}
-```
-
-### 返回结果
-
-|状态码|状态码含义|说明|数据模型|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登录态失效|Inline|
-
-### 返回数据结构
-
-状态码 **200**
-
-|名称|类型|必选|约束|中文名|说明|
-|---|---|---|---|---|---|
-|» code|integer|true|none|业务码|none|
-|» msg|string|false|none|业务处理信息|none|
-|» data|object|false|none|数据|none|
-|»» pages|integer|true|none|总页数|none|
-|»» page_num|integer|true|none|当前页码|none|
-|»» page_size|integer|true|none|每页的数量|none|
-|»» total|integer|true|none|总数|none|
-|»» list|[[bill](#schemabill)]|true|none|当前页的数据列表|none|
-|»»» 交易详情|[bill](#schemabill)|false|none|交易详情|交易账单|
-|»»»» id|string|true|none|账单ID|数字编号形式的账单ID|
-|»»»» type|integer|true|none|类型|账单类型|
-|»»»» amount|string|true|none|账单金额|三位逗分|
-|»»»» note|[note-overview](#schemanote-overview)|true|none|笔记|账单所关联的笔记|
-|»»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
-|»»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
-|»»»»»» username|string|true|none|用户名|none|
-|»»»»»» avatar|string|true|none|用户头像|头像图片URL|
-|»»»»»» biography|string|false|none|个人简介|此项非必须|
-|»»»»»» gender|string|true|none|性别|取值范围：男、女和未知|
-|»»»»»» follows_num|string|true|none|关注数|用户关注的数量|
-|»»»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
-|»»»»»» state|object|false|none||none|
-|»»»»»»» follow_status|boolean|false|none|是否关注|是否关注此用户|
-|»»»»»»» self_status|boolean|false|none|是否是当前用户|是否是当前用户|
-|»»»»» title|string|true|none|标题|笔记标题|
-|»»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»»»» view_num|string|true|none|浏览量|none|
-|»»»»» star_num|string|true|none|收藏量|none|
-|»»»»» comment_num|string|true|none|评论量|none|
-|»»»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
-|»»»» counterpart|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
-|»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
-|»»»»» username|string|true|none|用户名|none|
-|»»»»» avatar|string|true|none|用户头像|头像图片URL|
-|»»»»» biography|string|false|none|个人简介|此项非必须|
-|»»»»» gender|string|true|none|性别|取值范围：男、女和未知|
-|»»»»» follows_num|string|true|none|关注数|用户关注的数量|
-|»»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
-|»»»»» state|object|false|none||none|
-|»»»» create_time|string|true|none|创建时间|订单创建时间|
-|»» size|integer|true|none|当前页的数据列表长度|none|
-|»» has_previous_page|boolean|true|none|是否有前一页|none|
-|»» has_next_page|boolean|true|none|是否有下一页|none|
-|»» is_first_page|boolean|true|none|是否为首页|none|
-|»» is_last_page|boolean|true|none|是否为尾页|none|
-|»» first_page|integer|true|none|首页页码|none|
-|»» last_page|integer|true|none|尾页页码|none|
-
-#### 枚举值
-
-|属性|值|
-|---|---|
-|type|0|
-|type|1|
-|type|2|
-
-状态码 **401**
-
-|名称|类型|必选|约束|中文名|说明|
-|---|---|---|---|---|---|
-|» msg|string|true|none|响应信息|none|
-
-## GET 获取用户钱包信息
-
-GET /wallets
-
-> 返回示例
-
-> 成功
-
-```json
-{
-  "code": 200,
-  "data": {
-    "balance": "345.44",
-    "revenue": "858.87"
-  }
-}
-```
-
-> 登录态失效
-
-```json
-{
-  "msg": "用户未登录或登录过期"
-}
-```
-
-### 返回结果
-
-|状态码|状态码含义|说明|数据模型|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登录态失效|Inline|
-
-### 返回数据结构
-
-状态码 **200**
-
-|名称|类型|必选|约束|中文名|说明|
-|---|---|---|---|---|---|
-|» code|integer|true|none|业务码|none|
-|» msg|string|false|none|业务处理信息|none|
-|» data|[wallet](#schemawallet)|false|none|数据|none|
-|»» balance|string|true|none|余额|账户余额，三位逗分|
-|»» revenue|string|true|none|累计收入|累计余额，三位逗分|
 
 状态码 **401**
 
@@ -915,7 +659,7 @@ GET /users/{user_id}
 |---|---|---|---|---|---|
 |» code|integer|true|none|业务码|none|
 |» msg|string|false|none|业务处理信息|none|
-|» data|[user](#schemauser)|false|none|交易对象|账单创建时另外一方用户信息|
+|» data|[user](#schemauser)|false|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»» username|string|true|none|用户名|none|
 |»» avatar|string|true|none|用户头像|头像图片URL|
@@ -981,6 +725,323 @@ DELETE /follows/{user_id}
 |» code|integer|true|none|业务码|none|
 |» msg|string|false|none|业务处理信息|none|
 |» data|object|false|none|数据|none|
+
+状态码 **400**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» msg|string|true|none|错误信息|none|
+
+状态码 **401**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» msg|string|true|none|响应信息|none|
+
+# 用户/钱包
+
+## GET 分页获取用户账单列表
+
+GET /bills
+
+### 请求参数
+
+|名称|位置|类型|必选|中文名|说明|
+|---|---|---|---|---|---|
+|page_num|query|integer| 是 ||页码，从1开始|
+|page_size|query|integer| 是 ||每页数量|
+
+> 返回示例
+
+> 成功
+
+```json
+{
+  "code": 200,
+  "data": {
+    "pages": 1,
+    "page_num": 1,
+    "page_size": 10,
+    "total": 2,
+    "list": [
+      {
+        "id": "310000200305061461",
+        "type": 1,
+        "amount": "127.58",
+        "note": {
+          "id": "140000201208153623",
+          "author": {
+            "id": "230000201502117588",
+            "username": "陈霞",
+            "avatar": "http://dummyimage.com/234x60",
+            "biography": "长史经好细争命全增争变西面江做北越。",
+            "gender": "未知",
+            "follows_num": "8447",
+            "followers_num": "8977万",
+            "state": {
+              "follow_status": false,
+              "self_status": false
+            }
+          },
+          "title": "身本后公以快率",
+          "cover": "http://dummyimage.com/728x90",
+          "view_num": "2761w",
+          "star_num": "4690w",
+          "comment_num": "6709",
+          "create_time": "1970-08-13 00:44:11",
+          "update_time": "2024-03-28 14:55:17"
+        },
+        "create_time": "2024-03-28 14:55:17"
+      },
+      {
+        "id": "120000200908299334",
+        "type": 2,
+        "amount": "148.25",
+        "note": {
+          "id": "460000199011195381",
+          "author": {
+            "id": "150000201308044258",
+            "username": "马超",
+            "avatar": "http://dummyimage.com/120x600",
+            "biography": "条军红育验必眼打直党证使边存红传保。",
+            "gender": "男",
+            "follows_num": "7282",
+            "followers_num": "9330亿",
+            "state": {
+              "follow_status": false,
+              "self_status": false
+            }
+          },
+          "title": "离长家面运",
+          "cover": "http://dummyimage.com/728x90",
+          "view_num": "9482w",
+          "star_num": "8433w",
+          "comment_num": "5063w",
+          "create_time": "1994-08-03 22:36:20",
+          "update_time": "2024-03-28 14:55:17"
+        },
+        "create_time": "2024-03-28 14:55:17"
+      }
+    ],
+    "size": 2,
+    "has_previous_page": false,
+    "has_next_page": false,
+    "is_first_page": true,
+    "is_last_page": true,
+    "first_page": 1,
+    "last_page": 1
+  }
+}
+```
+
+> 登录态失效
+
+```json
+{
+  "msg": "用户未登录或登录过期"
+}
+```
+
+### 返回结果
+
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登录态失效|Inline|
+
+### 返回数据结构
+
+状态码 **200**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» code|integer|true|none|业务码|none|
+|» msg|string|false|none|业务处理信息|none|
+|» data|object|false|none|数据|none|
+|»» pages|integer|true|none|总页数|none|
+|»» page_num|integer|true|none|当前页码|none|
+|»» page_size|integer|true|none|每页的数量|none|
+|»» total|integer|true|none|总数|none|
+|»» list|[[bill](#schemabill)]|true|none|当前页的数据列表|none|
+|»»» 交易详情|[bill](#schemabill)|false|none|交易详情|交易账单|
+|»»»» id|string|true|none|账单ID|数字编号形式的账单ID|
+|»»»» type|integer|true|none|类型|账单类型|
+|»»»» amount|string|true|none|账单金额|三位逗分|
+|»»»» note|object|true|none|笔记|账单所关联的笔记|
+|»»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
+|»»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
+|»»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
+|»»»»»» username|string|true|none|用户名|none|
+|»»»»»» avatar|string|true|none|用户头像|头像图片URL|
+|»»»»»» biography|string|false|none|个人简介|此项非必须|
+|»»»»»» gender|string|true|none|性别|取值范围：男、女和未知|
+|»»»»»» follows_num|string|true|none|关注数|用户关注的数量|
+|»»»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
+|»»»»»» state|object|false|none||none|
+|»»»»»»» follow_status|boolean|false|none|是否关注|是否关注此用户|
+|»»»»»»» self_status|boolean|false|none|是否是当前用户|是否是当前用户|
+|»»»»» title|string|true|none|标题|笔记标题|
+|»»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
+|»»»»» view_num|string|true|none|浏览量|none|
+|»»»»» star_num|string|true|none|收藏量|none|
+|»»»»» comment_num|string|true|none|评论量|none|
+|»»»»» create_time|string|true|none|创建时间|笔记创建的时间|
+|»»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»»»» configuration|[note-configuration](#schemanote-configuration)|true|none|配置信息|笔记配置项|
+|»»»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
+|»»»» create_time|string|true|none|创建时间|订单创建时间|
+|»» size|integer|true|none|当前页的数据列表长度|none|
+|»» has_previous_page|boolean|true|none|是否有前一页|none|
+|»» has_next_page|boolean|true|none|是否有下一页|none|
+|»» is_first_page|boolean|true|none|是否为首页|none|
+|»» is_last_page|boolean|true|none|是否为尾页|none|
+|»» first_page|integer|true|none|首页页码|none|
+|»» last_page|integer|true|none|尾页页码|none|
+
+#### 枚举值
+
+|属性|值|
+|---|---|
+|type|0|
+|type|1|
+|type|2|
+|type|3|
+
+状态码 **401**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» msg|string|true|none|响应信息|none|
+
+## GET 获取用户钱包信息
+
+GET /wallets
+
+> 返回示例
+
+> 成功
+
+```json
+{
+  "code": 200,
+  "data": {
+    "balance": "345.44",
+    "revenue": "858.87"
+  }
+}
+```
+
+> 登录态失效
+
+```json
+{
+  "msg": "用户未登录或登录过期"
+}
+```
+
+### 返回结果
+
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登录态失效|Inline|
+
+### 返回数据结构
+
+状态码 **200**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» code|integer|true|none|业务码|none|
+|» msg|string|false|none|业务处理信息|none|
+|» data|[wallet](#schemawallet)|false|none|数据|none|
+|»» balance|string|true|none|余额|账户余额，三位逗分|
+|»» revenue|string|true|none|累计收入|累计余额，三位逗分|
+
+状态码 **401**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» msg|string|true|none|响应信息|none|
+
+## PUT 充值/提现
+
+PUT /wallets
+
+> Body 请求参数
+
+```json
+{
+  "type": "deposit",
+  "amount": "string"
+}
+```
+
+### 请求参数
+
+|名称|位置|类型|必选|中文名|说明|
+|---|---|---|---|---|---|
+|body|body|object| 否 ||none|
+|» type|body|string| 是 | 操作类型|none|
+|» amount|body|string| 是 | 操作金额|单位：元（两位小数）|
+
+#### 枚举值
+
+|属性|值|
+|---|---|
+|» type|deposit|
+|» type|withdrawal|
+
+> 返回示例
+
+> 成功
+
+```json
+{
+  "code": 200,
+  "data": {
+    "balance": "412.27",
+    "revenue": "23.44"
+  }
+}
+```
+
+> 400 Response
+
+```json
+{
+  "msg": "string"
+}
+```
+
+> 登录态失效
+
+```json
+{
+  "msg": "用户未登录或登录过期"
+}
+```
+
+### 返回结果
+
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|请求出错|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登录态失效|Inline|
+
+### 返回数据结构
+
+状态码 **200**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» code|integer|true|none|业务码|none|
+|» msg|string|false|none|业务处理信息|none|
+|» data|[wallet](#schemawallet)|false|none|数据|none|
+|»» balance|string|true|none|余额|账户余额，三位逗分|
+|»» revenue|string|true|none|累计收入|累计余额，三位逗分|
 
 状态码 **400**
 
@@ -1140,7 +1201,11 @@ GET /notes
         "star_num": "5672",
         "comment_num": "8011",
         "create_time": "1987-05-06 02:17:11",
-        "update_time": "2024-03-28 15:41:33"
+        "update_time": "2024-03-28 15:41:33",
+        "configuration": {
+          "public_config": true,
+          "free_config": "0.00"
+        }
       },
       {
         "id": "650000201011147350",
@@ -1163,7 +1228,11 @@ GET /notes
         "star_num": "760",
         "comment_num": "8751w",
         "create_time": "1971-04-04 15:11:54",
-        "update_time": "2024-03-28 15:41:33"
+        "update_time": "2024-03-28 15:41:33",
+        "configuration": {
+          "public_config": true,
+          "free_config": "3182.33"
+        }
       },
       {
         "id": "230000200508175733",
@@ -1186,7 +1255,11 @@ GET /notes
         "star_num": "7297",
         "comment_num": "6359",
         "create_time": "2001-06-04 15:37:48",
-        "update_time": "2024-03-28 15:41:33"
+        "update_time": "2024-03-28 15:41:33",
+        "configuration": {
+          "public_config": true,
+          "free_config": "0.00"
+        }
       }
     ],
     "size": 3,
@@ -1238,9 +1311,9 @@ GET /notes
 |»» page_size|integer|true|none|每页的数量|none|
 |»» total|integer|true|none|总数|none|
 |»» list|[[note-overview](#schemanote-overview)]|true|none|当前页的数据列表|none|
-|»»» 笔记|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
-|»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»» 笔记概览|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»» username|string|true|none|用户名|none|
 |»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -1251,13 +1324,16 @@ GET /notes
 |»»»»» state|object|false|none||none|
 |»»»»»» follow_status|boolean|false|none|是否关注|是否关注此用户|
 |»»»»»» self_status|boolean|false|none|是否是当前用户|是否是当前用户|
-|»»»» title|string|true|none|标题|笔记标题|
+|»»»» title|string|false|none|标题|笔记标题|
 |»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»»» view_num|string|true|none|浏览量|none|
-|»»»» star_num|string|true|none|收藏量|none|
-|»»»» comment_num|string|true|none|评论量|none|
-|»»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»»» view_num|string|false|none|浏览量|none|
+|»»»» star_num|string|false|none|收藏量|none|
+|»»»» comment_num|string|false|none|评论量|none|
+|»»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 |»» size|integer|true|none|当前页的数据列表长度|none|
 |»» has_previous_page|boolean|true|none|是否有前一页|none|
 |»» has_next_page|boolean|true|none|是否有下一页|none|
@@ -1289,7 +1365,7 @@ title: string
 cover: cmMtdXBsb2FkLTE3MTE3Nzc5ODQ1NDctNQ==/comment.jpg
 content: string
 publicOption: true
-freeOption: 0
+freeOption: string
 
 ```
 
@@ -1302,7 +1378,7 @@ freeOption: 0
 |» cover|body|string(binary)| 否 ||笔记封面，非必填项|
 |» content|body|string| 是 ||笔记内容|
 |» publicOption|body|boolean| 否 ||配置选项：笔记是否公开|
-|» freeOption|body|integer| 否 ||配置选项：笔记是否免费。若值为0，则免费，其余则收费，单位：分|
+|» freeOption|body|string| 否 ||配置选项：笔记是否免费。若值为0，则免费，其余则收费，单位：元（两位小数）|
 
 > 返回示例
 
@@ -1332,7 +1408,11 @@ freeOption: 0
     "star_num": "0",
     "comment_num": "0",
     "create_time": "2024-03-30 16:51:15",
-    "update_time": "2024-03-30 16:51:15"
+    "update_time": "2024-03-30 16:51:15",
+    "configuration": {
+      "public_config": true,
+      "free_config": "0.00"
+    }
   }
 }
 ```
@@ -1369,9 +1449,9 @@ freeOption: 0
 |---|---|---|---|---|---|
 |» code|integer|true|none|业务码|none|
 |» msg|string|false|none|业务处理信息|none|
-|» data|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
-|»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|» data|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»» username|string|true|none|用户名|none|
 |»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -1382,13 +1462,16 @@ freeOption: 0
 |»»» state|object|false|none||none|
 |»»»» follow_status|boolean|false|none|是否关注|是否关注此用户|
 |»»»» self_status|boolean|false|none|是否是当前用户|是否是当前用户|
-|»» title|string|true|none|标题|笔记标题|
+|»» title|string|false|none|标题|笔记标题|
 |»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»» view_num|string|true|none|浏览量|none|
-|»» star_num|string|true|none|收藏量|none|
-|»» comment_num|string|true|none|评论量|none|
-|»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»» view_num|string|false|none|浏览量|none|
+|»» star_num|string|false|none|收藏量|none|
+|»» comment_num|string|false|none|评论量|none|
+|»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 
 状态码 **400**
 
@@ -1471,7 +1554,7 @@ GET /notes/{note_id}
     },
     "configuration": {
       "public_config": true,
-      "free_config": 512306
+      "free_config": "5123.00"
     }
   }
 }
@@ -1615,9 +1698,9 @@ GET /notes/{note_id}
 |» code|integer|true|none|业务码|none|
 |» msg|string|false|none|业务处理信息|none|
 |» data|[note](#schemanote)|false|none|数据|none|
-|»» overview|[note-overview](#schemanote-overview)|true|none|笔记|账单所关联的笔记|
-|»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»» overview|[note-overview](#schemanote-overview)|true|none|笔记概览|none|
+|»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»» username|string|true|none|用户名|none|
 |»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -1628,20 +1711,20 @@ GET /notes/{note_id}
 |»»»» state|object|false|none||none|
 |»»»»» follow_status|boolean|false|none|是否关注|是否关注此用户|
 |»»»»» self_status|boolean|false|none|是否是当前用户|是否是当前用户|
-|»»» title|string|true|none|标题|笔记标题|
+|»»» title|string|false|none|标题|笔记标题|
 |»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»» view_num|string|true|none|浏览量|none|
-|»»» star_num|string|true|none|收藏量|none|
-|»»» comment_num|string|true|none|评论量|none|
-|»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»» view_num|string|false|none|浏览量|none|
+|»»» star_num|string|false|none|收藏量|none|
+|»»» comment_num|string|false|none|评论量|none|
+|»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 |»» content|string|true|none|内容|Markdown内容|
 |»» state|[note-state](#schemanote-state)|false|none|当前用户状态量|此项非必须|
 |»»» star_status|boolean|true|none|是否收藏|当前用户是否收藏|
 |»»» owner_status|boolean|true|none|是否拥有|是否为当前拥有|
-|»» configuration|[note-configuration](#schemanote-configuration)|false|none|笔记配置项|仅作者为当前用户时返回，此项非必须|
-|»»» public_config|boolean|true|none|是否公开|是否公开|
-|»»» free_config|integer|true|none|是否免费|若值为0，则免费，其余则收费，单位：分|
 
 状态码 **403**
 
@@ -1674,7 +1757,7 @@ freeOption: 0
 |» cover|body|string(binary)| 否 ||笔记封面，非必填项|
 |» content|body|string| 否 ||笔记内容|
 |» publicOption|body|boolean| 否 ||配置选项：笔记是否公开|
-|» freeOption|body|integer| 否 ||配置选项：笔记是否免费。若值为0，则免费，其余则收费，单位：分|
+|» freeOption|body|integer| 否 ||配置选项：笔记是否免费。若值为0，则免费，其余则收费，单位：元（两位小数）|
 
 > 返回示例
 
@@ -1704,7 +1787,11 @@ freeOption: 0
     "star_num": "0",
     "comment_num": "0",
     "create_time": "2024-03-30 16:51:15",
-    "update_time": "2024-03-30 16:51:15"
+    "update_time": "2024-03-30 16:51:15",
+    "configuration": {
+      "public_config": true,
+      "free_config": "3182.33"
+    }
   }
 }
 ```
@@ -1741,9 +1828,9 @@ freeOption: 0
 |---|---|---|---|---|---|
 |» code|integer|true|none|业务码|none|
 |» msg|string|false|none|业务处理信息|none|
-|» data|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
-|»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|» data|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»» username|string|true|none|用户名|none|
 |»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -1754,13 +1841,16 @@ freeOption: 0
 |»»» state|object|false|none||none|
 |»»»» follow_status|boolean|false|none|是否关注|是否关注此用户|
 |»»»» self_status|boolean|false|none|是否是当前用户|是否是当前用户|
-|»» title|string|true|none|标题|笔记标题|
+|»» title|string|false|none|标题|笔记标题|
 |»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»» view_num|string|true|none|浏览量|none|
-|»» star_num|string|true|none|收藏量|none|
-|»» comment_num|string|true|none|评论量|none|
-|»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»» view_num|string|false|none|浏览量|none|
+|»» star_num|string|false|none|收藏量|none|
+|»» comment_num|string|false|none|评论量|none|
+|»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 
 状态码 **400**
 
@@ -2059,6 +2149,121 @@ GET /notes/ai/{note_id}
 |---|---|---|---|---|---|
 |» msg|string|true|none|响应信息|none|
 
+## POST 购买笔记
+
+POST /purchases
+
+### 请求参数
+
+|名称|位置|类型|必选|中文名|说明|
+|---|---|---|---|---|---|
+|note_id|query|string| 是 ||笔记ID|
+
+> 返回示例
+
+> 成功
+
+```json
+{
+  "code": 200,
+  "data": {
+    "id": "44000020091230855X",
+    "author": {
+      "id": "360000200601101121",
+      "username": "邱强",
+      "avatar": "http://dummyimage.com/120x90",
+      "biography": "年许即确式线联毛周油铁究状矿业因领党。",
+      "gender": "男",
+      "follows_num": "6120",
+      "followers_num": "6174万",
+      "state": {
+        "follow_status": true,
+        "self_status": false
+      }
+    },
+    "title": "还少光名学写名",
+    "cover": "http://dummyimage.com/336x280",
+    "view_num": "1912",
+    "star_num": "6831",
+    "comment_num": "8171w",
+    "create_time": "1977-04-13 03:52:22",
+    "update_time": "2024-04-03 20:40:39",
+    "configuration": {
+      "public_config": true,
+      "free_config": "9571.18"
+    }
+  }
+}
+```
+
+> 400 Response
+
+```json
+{
+  "msg": "string"
+}
+```
+
+> 登录态失效
+
+```json
+{
+  "msg": "用户未登录或登录过期"
+}
+```
+
+### 返回结果
+
+|状态码|状态码含义|说明|数据模型|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|成功|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|请求出错|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|登录态失效|Inline|
+
+### 返回数据结构
+
+状态码 **200**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» code|integer|true|none|业务码|none|
+|» msg|string|false|none|业务处理信息|none|
+|» data|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
+|»»» id|string|true|none|用户ID|数字编号形式的用户ID|
+|»»» username|string|true|none|用户名|none|
+|»»» avatar|string|true|none|用户头像|头像图片URL|
+|»»» biography|string|false|none|个人简介|此项非必须|
+|»»» gender|string|true|none|性别|取值范围：男、女和未知|
+|»»» follows_num|string|true|none|关注数|用户关注的数量|
+|»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
+|»»» state|object|false|none||none|
+|»»»» follow_status|boolean|false|none|是否关注|是否关注此用户|
+|»»»» self_status|boolean|false|none|是否是当前用户|是否是当前用户|
+|»» title|string|false|none|标题|笔记标题|
+|»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
+|»» view_num|string|false|none|浏览量|none|
+|»» star_num|string|false|none|收藏量|none|
+|»» comment_num|string|false|none|评论量|none|
+|»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
+
+状态码 **400**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» msg|string|true|none|错误信息|none|
+
+状态码 **401**
+
+|名称|类型|必选|约束|中文名|说明|
+|---|---|---|---|---|---|
+|» msg|string|true|none|响应信息|none|
+
 # 评论
 
 ## GET 分页获取笔记评论
@@ -2183,7 +2388,11 @@ GET /comments
           "star_num": "8845w",
           "comment_num": "9303w",
           "create_time": "2012-09-19 10:29:55",
-          "update_time": "2024-03-28 20:31:31"
+          "update_time": "2024-03-28 20:31:31",
+          "configuration": {
+            "public_config": true,
+            "free_config": "5192.57"
+          }
         },
         "agree_num": 6536,
         "reply_num": 3,
@@ -2259,7 +2468,7 @@ GET /comments
 |»» list|[[comment](#schemacomment)]|true|none|当前页的数据列表|none|
 |»»» 评论|[comment](#schemacomment)|false|none|评论|数据项|
 |»»»» id|string|true|none|评论ID|数字编号形式的评论ID|
-|»»»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»» username|string|true|none|用户名|none|
 |»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -2274,9 +2483,9 @@ GET /comments
 |»»»» image_list|[string]|false|none|评论图片|评论图片列表，非必须项|
 |»»»» audio|string|false|none|评论语音|语音URL|
 |»»»» video|string|false|none|评论视频|视频URL|
-|»»»» note|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
-|»»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»» note|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»»»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»»» username|string|true|none|用户名|none|
 |»»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -2285,13 +2494,16 @@ GET /comments
 |»»»»»» follows_num|string|true|none|关注数|用户关注的数量|
 |»»»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
 |»»»»»» state|object|false|none||none|
-|»»»»» title|string|true|none|标题|笔记标题|
+|»»»»» title|string|false|none|标题|笔记标题|
 |»»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»»»» view_num|string|true|none|浏览量|none|
-|»»»»» star_num|string|true|none|收藏量|none|
-|»»»»» comment_num|string|true|none|评论量|none|
-|»»»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»»»» view_num|string|false|none|浏览量|none|
+|»»»»» star_num|string|false|none|收藏量|none|
+|»»»»» comment_num|string|false|none|评论量|none|
+|»»»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 |»»»» agree_num|string|true|none|赞同数|评论的点赞数量|
 |»»»» reply_num|string|true|none|回复数|评论回复的数量|
 |»»»» create_time|string|true|none|评论时间|评论发布时间|
@@ -2315,7 +2527,7 @@ GET /comments
 
 POST /comments
 
-笔记的（单条）评论信息，**图片、语音、视频和关联笔记只能选其一**。
+笔记的（单条）评论信息，**图片、语音、视频和关联笔记只能选其一**。通过 `获取文件链接` 获取url。
 
 > Body 请求参数
 
@@ -2416,7 +2628,7 @@ POST /comments
 |» msg|string|false|none|业务处理信息|none|
 |» data|[comment](#schemacomment)|false|none|评论|数据项|
 |»» id|string|true|none|评论ID|数字编号形式的评论ID|
-|»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»» username|string|true|none|用户名|none|
 |»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -2431,9 +2643,9 @@ POST /comments
 |»» image_list|[string]|false|none|评论图片|评论图片列表，非必须项|
 |»» audio|string|false|none|评论语音|语音URL|
 |»» video|string|false|none|评论视频|视频URL|
-|»» note|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
-|»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»» note|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»» username|string|true|none|用户名|none|
 |»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -2442,13 +2654,16 @@ POST /comments
 |»»»» follows_num|string|true|none|关注数|用户关注的数量|
 |»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
 |»»»» state|object|false|none||none|
-|»»» title|string|true|none|标题|笔记标题|
+|»»» title|string|false|none|标题|笔记标题|
 |»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»» view_num|string|true|none|浏览量|none|
-|»»» star_num|string|true|none|收藏量|none|
-|»»» comment_num|string|true|none|评论量|none|
-|»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»» view_num|string|false|none|浏览量|none|
+|»»» star_num|string|false|none|收藏量|none|
+|»»» comment_num|string|false|none|评论量|none|
+|»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 |»» agree_num|string|true|none|赞同数|评论的点赞数量|
 |»» reply_num|string|true|none|回复数|评论回复的数量|
 |»» create_time|string|true|none|评论时间|评论发布时间|
@@ -2783,7 +2998,7 @@ GET /sub_comments
 |»» total|integer|true|none|总数|none|
 |»» list|[object]|true|none|当前页的数据列表|none|
 |»»» id|string|true|none|评论ID|数字编号形式的评论ID|
-|»»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»» username|string|true|none|用户名|none|
 |»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -2798,9 +3013,9 @@ GET /sub_comments
 |»»» image_list|[string]|false|none|评论图片|评论图片列表，非必须项|
 |»»» audio|string|false|none|评论语音|语音URL|
 |»»» video|string|false|none|评论视频|视频URL|
-|»»» note|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
-|»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»» note|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»» username|string|true|none|用户名|none|
 |»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -2809,13 +3024,16 @@ GET /sub_comments
 |»»»»» follows_num|string|true|none|关注数|用户关注的数量|
 |»»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
 |»»»»» state|object|false|none||none|
-|»»»» title|string|true|none|标题|笔记标题|
+|»»»» title|string|false|none|标题|笔记标题|
 |»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»»» view_num|string|true|none|浏览量|none|
-|»»»» star_num|string|true|none|收藏量|none|
-|»»»» comment_num|string|true|none|评论量|none|
-|»»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»»» view_num|string|false|none|浏览量|none|
+|»»»» star_num|string|false|none|收藏量|none|
+|»»»» comment_num|string|false|none|评论量|none|
+|»»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 |»»» agree_num|string|true|none|赞同数|评论的点赞数量|
 |»»» reply_num|string|true|none|回复数|评论回复的数量|
 |»»» create_time|string|true|none|评论时间|评论发布时间|
@@ -2823,7 +3041,7 @@ GET /sub_comments
 |»»»» agree_status|boolean|true|none|是否点赞|当前用户是否点赞该评论|
 |»»» parent_comment|[comment](#schemacomment)|false|none|评论|数据项|
 |»»»» id|string|true|none|评论ID|数字编号形式的评论ID|
-|»»»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»» username|string|true|none|用户名|none|
 |»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -2836,16 +3054,17 @@ GET /sub_comments
 |»»»» image_list|[string]|false|none|评论图片|评论图片列表，非必须项|
 |»»»» audio|string|false|none|评论语音|语音URL|
 |»»»» video|string|false|none|评论视频|视频URL|
-|»»»» note|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
-|»»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
-|»»»»» title|string|true|none|标题|笔记标题|
+|»»»» note|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»»»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
+|»»»»» title|string|false|none|标题|笔记标题|
 |»»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»»»» view_num|string|true|none|浏览量|none|
-|»»»»» star_num|string|true|none|收藏量|none|
-|»»»»» comment_num|string|true|none|评论量|none|
-|»»»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»»»» view_num|string|false|none|浏览量|none|
+|»»»»» star_num|string|false|none|收藏量|none|
+|»»»»» comment_num|string|false|none|评论量|none|
+|»»»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
 |»»»» agree_num|string|true|none|赞同数|评论的点赞数量|
 |»»»» reply_num|string|true|none|回复数|评论回复的数量|
 |»»»» create_time|string|true|none|评论时间|评论发布时间|
@@ -2921,7 +3140,11 @@ GET /comments/trace
       "star_num": "8588w",
       "comment_num": "4273w",
       "create_time": "2023-05-13 13:48:46",
-      "update_time": "2024-03-29 00:02:10"
+      "update_time": "2024-03-29 00:02:10",
+      "configuration": {
+        "public_config": true,
+        "free_config": "0.00"
+      }
     },
     "comment_trace_list": [
       {
@@ -3075,9 +3298,9 @@ GET /comments/trace
 |» code|integer|true|none|业务码|none|
 |» msg|string|false|none|业务处理信息|none|
 |» data|object|false|none|数据|none|
-|»» note|[note-overview](#schemanote-overview)|true|none|笔记|账单所关联的笔记|
-|»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»» note|[note-overview](#schemanote-overview)|true|none|笔记概览|none|
+|»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»» username|string|true|none|用户名|none|
 |»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -3088,16 +3311,19 @@ GET /comments/trace
 |»»»» state|object|false|none||none|
 |»»»»» follow_status|boolean|false|none|是否关注|是否关注此用户|
 |»»»»» self_status|boolean|false|none|是否是当前用户|是否是当前用户|
-|»»» title|string|true|none|标题|笔记标题|
+|»»» title|string|false|none|标题|笔记标题|
 |»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»» view_num|string|true|none|浏览量|none|
-|»»» star_num|string|true|none|收藏量|none|
-|»»» comment_num|string|true|none|评论量|none|
-|»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»» view_num|string|false|none|浏览量|none|
+|»»» star_num|string|false|none|收藏量|none|
+|»»» comment_num|string|false|none|评论量|none|
+|»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 |»» comment_trace_list|[object]|true|none|追溯列表|none|
 |»»» id|string|true|none|评论ID|数字编号形式的评论ID|
-|»»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»» username|string|true|none|用户名|none|
 |»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -3110,16 +3336,17 @@ GET /comments/trace
 |»»» image_list|[string]|false|none|评论图片|评论图片列表，非必须项|
 |»»» audio|string|false|none|评论语音|语音URL|
 |»»» video|string|false|none|评论视频|视频URL|
-|»»» note|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
-|»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
-|»»»» title|string|true|none|标题|笔记标题|
+|»»» note|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
+|»»»» title|string|false|none|标题|笔记标题|
 |»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»»» view_num|string|true|none|浏览量|none|
-|»»»» star_num|string|true|none|收藏量|none|
-|»»»» comment_num|string|true|none|评论量|none|
-|»»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»»» view_num|string|false|none|浏览量|none|
+|»»»» star_num|string|false|none|收藏量|none|
+|»»»» comment_num|string|false|none|评论量|none|
+|»»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
 |»»» agree_num|string|true|none|赞同数|评论的点赞数量|
 |»»» reply_num|string|true|none|回复数|评论回复的数量|
 |»»» create_time|string|true|none|评论时间|评论发布时间|
@@ -3127,7 +3354,7 @@ GET /comments/trace
 |»»»» agree_status|boolean|true|none|是否点赞|当前用户是否点赞该评论|
 |»»» parent_comment|[comment](#schemacomment)|false|none|评论|数据项|
 |»»»» id|string|true|none|评论ID|数字编号形式的评论ID|
-|»»»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»» username|string|true|none|用户名|none|
 |»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -3140,16 +3367,17 @@ GET /comments/trace
 |»»»» image_list|[string]|false|none|评论图片|评论图片列表，非必须项|
 |»»»» audio|string|false|none|评论语音|语音URL|
 |»»»» video|string|false|none|评论视频|视频URL|
-|»»»» note|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
-|»»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
-|»»»»» title|string|true|none|标题|笔记标题|
+|»»»» note|[note-overview](#schemanote-overview)|false|none|笔记概览|none|
+|»»»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
+|»»»»» title|string|false|none|标题|笔记标题|
 |»»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»»»» view_num|string|true|none|浏览量|none|
-|»»»»» star_num|string|true|none|收藏量|none|
-|»»»»» comment_num|string|true|none|评论量|none|
-|»»»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»»»» view_num|string|false|none|浏览量|none|
+|»»»»» star_num|string|false|none|收藏量|none|
+|»»»»» comment_num|string|false|none|评论量|none|
+|»»»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
 |»»»» agree_num|string|true|none|赞同数|评论的点赞数量|
 |»»»» reply_num|string|true|none|回复数|评论回复的数量|
 |»»»» create_time|string|true|none|评论时间|评论发布时间|
@@ -4676,7 +4904,11 @@ GET /notices
           "star_num": "5578w",
           "comment_num": "1808w",
           "create_time": "2020-06-13 05:04:40",
-          "update_time": "2024-03-30 16:13:54"
+          "update_time": "2024-03-30 16:13:54",
+          "configuration": {
+            "public_config": true,
+            "free_config": "0.00"
+          }
         },
         "star_time": "2024-03-30 16:13:54",
         "read_status": false
@@ -4704,6 +4936,7 @@ GET /notices
     "list": [
       {
         "id": "340000198801097420",
+        "type": 0,
         "note": {
           "id": "460000201709039524",
           "author": {
@@ -4725,7 +4958,11 @@ GET /notices
           "star_num": "8554",
           "comment_num": "1303w",
           "create_time": "1988-10-01 06:24:33",
-          "update_time": "2024-03-30 16:12:44"
+          "update_time": "2024-03-30 16:12:44",
+          "configuration": {
+            "public_config": true,
+            "free_config": "0.00"
+          }
         },
         "comment": {
           "id": "430000198611301758",
@@ -4795,7 +5032,11 @@ GET /notices
             "star_num": "9753w",
             "comment_num": "540w",
             "create_time": "1974-03-15 11:27:42",
-            "update_time": "2024-03-30 16:11:22"
+            "update_time": "2024-03-30 16:11:22",
+            "configuration": {
+              "public_config": true,
+              "free_config": "0.00"
+            }
           },
           "counterpart": {
             "id": "530000202007288289",
@@ -4862,7 +5103,7 @@ GET /notices
 |---|---|---|---|---|---|
 |»»» *anonymous*|[follow-notice](#schemafollow-notice)|false|none|关注通知|none|
 |»»»» id|string|true|none|通知ID|数字编号形式的通知ID|
-|»»»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»» username|string|true|none|用户名|none|
 |»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -4882,7 +5123,7 @@ GET /notices
 |---|---|---|---|---|---|
 |»»» *anonymous*|[star_notice](#schemastar_notice)|false|none|收藏通知|none|
 |»»»» id|string|true|none|通知ID|数字编号形式的用户ID|
-|»»»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»» username|string|true|none|用户名|none|
 |»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -4891,9 +5132,9 @@ GET /notices
 |»»»»» follows_num|string|true|none|关注数|用户关注的数量|
 |»»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
 |»»»»» state|object|false|none||none|
-|»»»» note|[note-overview](#schemanote-overview)|true|none|笔记|账单所关联的笔记|
-|»»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»» note|[note-overview](#schemanote-overview)|true|none|笔记概览|none|
+|»»»»» id|string|false|none|笔记ID|数字编号形式的笔记ID|
+|»»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»»» username|string|true|none|用户名|none|
 |»»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -4902,13 +5143,16 @@ GET /notices
 |»»»»»» follows_num|string|true|none|关注数|用户关注的数量|
 |»»»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
 |»»»»»» state|object|false|none||none|
-|»»»»» title|string|true|none|标题|笔记标题|
+|»»»»» title|string|false|none|标题|笔记标题|
 |»»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
-|»»»»» view_num|string|true|none|浏览量|none|
-|»»»»» star_num|string|true|none|收藏量|none|
-|»»»»» comment_num|string|true|none|评论量|none|
-|»»»»» create_time|string|true|none|创建时间|笔记创建的时间|
-|»»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»»»» view_num|string|false|none|浏览量|none|
+|»»»»» star_num|string|false|none|收藏量|none|
+|»»»»» comment_num|string|false|none|评论量|none|
+|»»»»» create_time|string|false|none|创建时间|笔记创建的时间|
+|»»»»» update_time|string|false|none|修改时间|笔记最后一次修改的时间|
+|»»»»» configuration|[note-configuration](#schemanote-configuration)|false|none|配置信息|笔记配置项|
+|»»»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 |»»»» star_time|string|true|none|收藏时间|none|
 |»»»» read_status|boolean|true|none|是否已读|none|
 
@@ -4918,9 +5162,10 @@ GET /notices
 |---|---|---|---|---|---|
 |»»» *anonymous*|[comment-notice](#schemacomment-notice)|false|none|评论通知|none|
 |»»»» id|string|true|none|通知ID|数字编号形式的用户ID|
+|»»»» type|integer|true|none|通知类型|评论通知的类型|
 |»»»» note|object|true|none|笔记信息|评论所在的笔记|
 |»»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»»» username|string|true|none|用户名|none|
 |»»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -4936,9 +5181,12 @@ GET /notices
 |»»»»» comment_num|string|true|none|评论量|none|
 |»»»»» create_time|string|true|none|创建时间|笔记创建的时间|
 |»»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|»»»»» configuration|[note-configuration](#schemanote-configuration)|true|none|配置信息|笔记配置项|
+|»»»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 |»»»» comment|object|true|none|评论信息|none|
 |»»»»» id|string|true|none|评论ID|数字编号形式的评论ID|
-|»»»»» user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»»» user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |»»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
 |»»»»»» username|string|true|none|用户名|none|
 |»»»»»» avatar|string|true|none|用户头像|头像图片URL|
@@ -4961,9 +5209,17 @@ GET /notices
 |»»»»» id|string|true|none|账单ID|数字编号形式的账单ID|
 |»»»»» type|integer|true|none|类型|账单类型|
 |»»»»» amount|string|true|none|账单金额|三位逗分|
-|»»»»» note|[note-overview](#schemanote-overview)|true|none|笔记|账单所关联的笔记|
+|»»»»» note|object|true|none|笔记|账单所关联的笔记|
 |»»»»»» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|»»»»»» author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|»»»»»» author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
+|»»»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
+|»»»»»»» username|string|true|none|用户名|none|
+|»»»»»»» avatar|string|true|none|用户头像|头像图片URL|
+|»»»»»»» biography|string|false|none|个人简介|此项非必须|
+|»»»»»»» gender|string|true|none|性别|取值范围：男、女和未知|
+|»»»»»»» follows_num|string|true|none|关注数|用户关注的数量|
+|»»»»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
+|»»»»»»» state|object|false|none||none|
 |»»»»»» title|string|true|none|标题|笔记标题|
 |»»»»»» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
 |»»»»»» view_num|string|true|none|浏览量|none|
@@ -4971,15 +5227,9 @@ GET /notices
 |»»»»»» comment_num|string|true|none|评论量|none|
 |»»»»»» create_time|string|true|none|创建时间|笔记创建的时间|
 |»»»»»» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
-|»»»»» counterpart|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
-|»»»»»» id|string|true|none|用户ID|数字编号形式的用户ID|
-|»»»»»» username|string|true|none|用户名|none|
-|»»»»»» avatar|string|true|none|用户头像|头像图片URL|
-|»»»»»» biography|string|false|none|个人简介|此项非必须|
-|»»»»»» gender|string|true|none|性别|取值范围：男、女和未知|
-|»»»»»» follows_num|string|true|none|关注数|用户关注的数量|
-|»»»»»» followers_num|string|true|none|粉丝数|用户粉丝的数量|
-|»»»»»» state|object|false|none||none|
+|»»»»»» configuration|[note-configuration](#schemanote-configuration)|true|none|配置信息|笔记配置项|
+|»»»»»»» public_config|boolean|true|none|是否公开|是否公开|
+|»»»»»»» free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 |»»»»» create_time|string|true|none|创建时间|订单创建时间|
 |»»»» read_status|boolean|true|none|是否已读|none|
 
@@ -5001,7 +5251,10 @@ GET /notices
 |---|---|
 |type|0|
 |type|1|
+|type|0|
+|type|1|
 |type|2|
+|type|3|
 
 状态码 **401**
 
@@ -5569,19 +5822,10 @@ GET /edit/export
     "star_num": "string",
     "comment_num": "string",
     "create_time": "string",
-    "update_time": "string"
-  },
-  "counterpart": {
-    "id": "string",
-    "username": "string",
-    "avatar": "string",
-    "biography": "string",
-    "gender": "string",
-    "follows_num": "string",
-    "followers_num": "string",
-    "state": {
-      "follow_status": true,
-      "self_status": true
+    "update_time": "string",
+    "configuration": {
+      "public_config": true,
+      "free_config": "string"
     }
   },
   "create_time": "string"
@@ -5598,8 +5842,17 @@ GET /edit/export
 |id|string|true|none|账单ID|数字编号形式的账单ID|
 |type|integer|true|none|类型|账单类型|
 |amount|string|true|none|账单金额|三位逗分|
-|note|[note-overview](#schemanote-overview)|true|none|笔记|账单所关联的笔记|
-|counterpart|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|note|object|true|none|笔记|账单所关联的笔记|
+|» id|string|true|none|笔记ID|数字编号形式的笔记ID|
+|» author|[user](#schemauser)|true|none||笔记作者，同时也是账单创建时另外一方用户信息|
+|» title|string|true|none|标题|笔记标题|
+|» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
+|» view_num|string|true|none|浏览量|none|
+|» star_num|string|true|none|收藏量|none|
+|» comment_num|string|true|none|评论量|none|
+|» create_time|string|true|none|创建时间|笔记创建的时间|
+|» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|» configuration|[note-configuration](#schemanote-configuration)|true|none||笔记配置项|
 |create_time|string|true|none|创建时间|订单创建时间|
 
 #### 枚举值
@@ -5609,6 +5862,7 @@ GET /edit/export
 |type|0|
 |type|1|
 |type|2|
+|type|3|
 
 <h2 id="tocS_wallet">wallet</h2>
 
@@ -5669,19 +5923,10 @@ GET /edit/export
       "star_num": "string",
       "comment_num": "string",
       "create_time": "string",
-      "update_time": "string"
-    },
-    "counterpart": {
-      "id": "string",
-      "username": "string",
-      "avatar": "string",
-      "biography": "string",
-      "gender": "string",
-      "follows_num": "string",
-      "followers_num": "string",
-      "state": {
-        "follow_status": true,
-        "self_status": true
+      "update_time": "string",
+      "configuration": {
+        "public_config": true,
+        "free_config": "string"
       }
     },
     "create_time": "string"
@@ -5737,7 +5982,7 @@ GET /edit/export
 |名称|类型|必选|约束|中文名|说明|
 |---|---|---|---|---|---|
 |id|string|true|none|评论ID|数字编号形式的评论ID|
-|user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |content|string|true|none|评论文本|none|
 |create_time|string|true|none|评论时间|评论发布时间|
 
@@ -5751,6 +5996,7 @@ GET /edit/export
 ```json
 {
   "id": "string",
+  "type": 0,
   "note": {
     "id": "string",
     "author": {
@@ -5772,7 +6018,11 @@ GET /edit/export
     "star_num": "string",
     "comment_num": "string",
     "create_time": "string",
-    "update_time": "string"
+    "update_time": "string",
+    "configuration": {
+      "public_config": true,
+      "free_config": "string"
+    }
   },
   "comment": {
     "id": "string",
@@ -5804,9 +6054,10 @@ GET /edit/export
 |名称|类型|必选|约束|中文名|说明|
 |---|---|---|---|---|---|
 |id|string|true|none|通知ID|数字编号形式的用户ID|
+|type|integer|true|none|通知类型|评论通知的类型|
 |note|object|true|none|笔记信息|评论所在的笔记|
 |» id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|» author|[user](#schemauser)|true|none||账单创建时另外一方用户信息|
+|» author|[user](#schemauser)|true|none||笔记作者，同时也是账单创建时另外一方用户信息|
 |» title|string|true|none|标题|笔记标题|
 |» cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
 |» view_num|string|true|none|浏览量|none|
@@ -5814,12 +6065,20 @@ GET /edit/export
 |» comment_num|string|true|none|评论量|none|
 |» create_time|string|true|none|创建时间|笔记创建的时间|
 |» update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|» configuration|[note-configuration](#schemanote-configuration)|true|none||笔记配置项|
 |comment|object|true|none|评论信息|none|
 |» id|string|true|none|评论ID|数字编号形式的评论ID|
-|» user|[user](#schemauser)|true|none||账单创建时另外一方用户信息|
+|» user|[user](#schemauser)|true|none||笔记作者，同时也是账单创建时另外一方用户信息|
 |» content|string|true|none|评论文本|none|
 |» create_time|string|true|none|评论时间|评论发布时间|
 |read_status|boolean|true|none|是否已读|none|
+
+#### 枚举值
+
+|属性|值|
+|---|---|
+|type|0|
+|type|1|
 
 <h2 id="tocS_star_notice">star_notice</h2>
 
@@ -5865,7 +6124,11 @@ GET /edit/export
     "star_num": "string",
     "comment_num": "string",
     "create_time": "string",
-    "update_time": "string"
+    "update_time": "string",
+    "configuration": {
+      "public_config": true,
+      "free_config": "string"
+    }
   },
   "star_time": "string",
   "read_status": true
@@ -5880,8 +6143,8 @@ GET /edit/export
 |名称|类型|必选|约束|中文名|说明|
 |---|---|---|---|---|---|
 |id|string|true|none|通知ID|数字编号形式的用户ID|
-|user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
-|note|[note-overview](#schemanote-overview)|true|none|笔记|账单所关联的笔记|
+|user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
+|note|[note-overview](#schemanote-overview)|true|none||none|
 |star_time|string|true|none|收藏时间|none|
 |read_status|boolean|true|none|是否已读|none|
 
@@ -5921,7 +6184,7 @@ GET /edit/export
 |名称|类型|必选|约束|中文名|说明|
 |---|---|---|---|---|---|
 |id|string|true|none|通知ID|数字编号形式的通知ID|
-|user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |follow_time|string|true|none|关注时间|none|
 |read_status|boolean|true|none|是否已读|none|
 
@@ -5975,7 +6238,11 @@ GET /edit/export
     "star_num": "string",
     "comment_num": "string",
     "create_time": "string",
-    "update_time": "string"
+    "update_time": "string",
+    "configuration": {
+      "public_config": true,
+      "free_config": "string"
+    }
   },
   "agree_num": "string",
   "reply_num": "string",
@@ -5994,12 +6261,12 @@ GET /edit/export
 |名称|类型|必选|约束|中文名|说明|
 |---|---|---|---|---|---|
 |id|string|true|none|评论ID|数字编号形式的评论ID|
-|user|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|user|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |text|string|false|none|评论文本|非必须项|
 |image_list|[string]|false|none|评论图片|评论图片列表，非必须项|
 |audio|string|false|none|评论语音|语音URL|
 |video|string|false|none|评论视频|视频URL|
-|note|[note-overview](#schemanote-overview)|false|none|笔记|账单所关联的笔记|
+|note|[note-overview](#schemanote-overview)|false|none||none|
 |agree_num|string|true|none|赞同数|评论的点赞数量|
 |reply_num|string|true|none|回复数|评论回复的数量|
 |create_time|string|true|none|评论时间|评论发布时间|
@@ -6124,7 +6391,7 @@ GET /edit/export
 ```json
 {
   "public_config": true,
-  "free_config": 0
+  "free_config": "string"
 }
 
 ```
@@ -6136,7 +6403,7 @@ GET /edit/export
 |名称|类型|必选|约束|中文名|说明|
 |---|---|---|---|---|---|
 |public_config|boolean|true|none|是否公开|是否公开|
-|free_config|integer|true|none|是否免费|若值为0，则免费，其余则收费，单位：分|
+|free_config|string|true|none|是否免费|若值为0，则免费，其余则收费，单位：元（两位小数）|
 
 <h2 id="tocS_note-state">note-state</h2>
 
@@ -6307,16 +6574,16 @@ GET /edit/export
     "star_num": "string",
     "comment_num": "string",
     "create_time": "string",
-    "update_time": "string"
+    "update_time": "string",
+    "configuration": {
+      "public_config": true,
+      "free_config": "string"
+    }
   },
   "content": "string",
   "state": {
     "star_status": true,
     "owner_status": true
-  },
-  "configuration": {
-    "public_config": true,
-    "free_config": 0
   }
 }
 
@@ -6328,10 +6595,9 @@ GET /edit/export
 
 |名称|类型|必选|约束|中文名|说明|
 |---|---|---|---|---|---|
-|overview|[note-overview](#schemanote-overview)|true|none|笔记|账单所关联的笔记|
+|overview|[note-overview](#schemanote-overview)|true|none||none|
 |content|string|true|none|内容|Markdown内容|
 |state|[note-state](#schemanote-state)|false|none|当前用户状态量|此项非必须|
-|configuration|[note-configuration](#schemanote-configuration)|false|none|笔记配置项|仅作者为当前用户时返回，此项非必须|
 
 <h2 id="tocS_user">user</h2>
 
@@ -6403,7 +6669,11 @@ GET /edit/export
   "star_num": "string",
   "comment_num": "string",
   "create_time": "string",
-  "update_time": "string"
+  "update_time": "string",
+  "configuration": {
+    "public_config": true,
+    "free_config": "string"
+  }
 }
 
 ```
@@ -6415,7 +6685,7 @@ GET /edit/export
 |名称|类型|必选|约束|中文名|说明|
 |---|---|---|---|---|---|
 |id|string|true|none|笔记ID|数字编号形式的笔记ID|
-|author|[user](#schemauser)|true|none|交易对象|账单创建时另外一方用户信息|
+|author|[user](#schemauser)|true|none|交易对象|笔记作者，同时也是账单创建时另外一方用户信息|
 |title|string|true|none|标题|笔记标题|
 |cover|string|false|none|封面图片|图片URL，此项非必须。若笔记无自带封面：内容含有图片时默认返回首图，若包含音频而不包含图片则返回默认音频图片，若包含视频则返回视频切片。|
 |view_num|string|true|none|浏览量|none|
@@ -6423,4 +6693,5 @@ GET /edit/export
 |comment_num|string|true|none|评论量|none|
 |create_time|string|true|none|创建时间|笔记创建的时间|
 |update_time|string|true|none|修改时间|笔记最后一次修改的时间|
+|configuration|[note-configuration](#schemanote-configuration)|true|none|配置信息|笔记配置项|
 
