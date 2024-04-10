@@ -86,7 +86,7 @@
 
 ### 📒 表结构
 
-#### 表名： bill
+#### bill
 
 说明： 账单表
 
@@ -100,7 +100,7 @@
 |  6   |   note_id   |  bigint  |        |      |      |        |        | 关联笔记ID                               |
 |  7   | is_deleted  | tinyint  |        |      |      |        |        | 是否逻辑删除                             |
 
-#### 表名： collection
+#### collection
 
 说明： 合集表
 
@@ -114,7 +114,7 @@
 |  6   |    create_time     | datetime |       |      |      |        |        | 创建时间                  |
 |  7   |   is_open_public   | tinyint  |       |      |      |        |        | 是否公开                  |
 
-#### 表名： collection_favorite
+#### collection_favorite
 
 说明： 合集收藏表
 
@@ -125,7 +125,7 @@
 |  3   |  favorite_id  |  bigint  |      |      |      |        |        | 收藏夹ID       |
 |  4   |  create_time  | datetime |      |      |      |        |        | 收藏时间       |
 
-#### 表名： comment_like
+#### comment_like
 
 说明： 评论点赞表
 
@@ -136,7 +136,7 @@
 |  3   |   user_id   |  bigint  |      |      |      |        |        | 用户ID         |
 |  4   | create_time | datetime |      |      |      |        |        | 点赞时间       |
 
-#### 表名： favorite
+#### favorite
 
 说明： 收藏夹表
 
@@ -150,7 +150,7 @@
 |  6   |  is_option_public  | tinyint  |       |      |      |        |        | 是否公开                  |
 |  7   | is_option_default  | tinyint  |       |      |      |        |        | 是否为默认收藏夹          |
 
-#### 表名： follow
+#### follow
 
 说明： 关注表
 
@@ -161,7 +161,7 @@
 |  3   |  follow_id  |  bigint  |      |      |      |        |        | 被关注用户ID |
 |  4   | create_time | datetime |      |      |      |        |        | 关注时间     |
 
-#### 表名： note
+#### note
 
 说明： 笔记表
 
@@ -177,7 +177,7 @@
 |  8   | is_open_public | tinyint  |        |      |      |        |        | 是否公开              |
 |  9   |     price      | decimal  | (10,2) |      |      |   √    |        | 价格，免费为null 0    |
 
-#### 表名： note_collect
+#### note_collect
 
 说明： 合集收录表
 
@@ -186,7 +186,7 @@
 |  1   |    note_id    |  bigint  |      |  √   |      |        |        | 笔记ID |
 |  2   | collection_id |  bigint  |      |  √   |      |        |        | 合集ID |
 
-#### 表名： note_favorite
+#### note_favorite
 
 说明： 笔记收藏表
 
@@ -197,7 +197,7 @@
 |  3   | favorite_id |  bigint  |      |      |      |        |        | 收藏夹ID       |
 |  4   | create_time | datetime |      |      |      |        |        | 收藏时间       |
 
-#### 表名： notice
+#### notice
 
 说明： 通知表
 
@@ -215,7 +215,7 @@
 |  10  |       create_time       | datetime |      |      |      |        |        | 通知时间                                                     |
 |  11  |         is_read         | tinyint  |      |      |      |        |        | 是否已读                                                     |
 
-#### 表名： tb_comment
+#### tb_comment
 
 说明： 评论表
 
@@ -233,7 +233,7 @@
 |  10  |   user_id    |  bigint  |      |      |      |        |        | 用户ID             |
 |  11  | create_time  | datetime |      |      |      |        |        | 评论时间           |
 
-#### 表名： tb_user
+#### tb_user
 
 说明： 用户表
 
@@ -248,7 +248,7 @@
 |  7   |  balance  | decimal  | (10,2) |      |      |        |        | 余额                                   |
 |  8   |  revenue  | decimal  | (10,2) |      |      |        |        | 收入                                   |
 
-#### 表名： view_history
+#### view_history
 
 说明： 笔记查看历史表
 
