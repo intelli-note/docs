@@ -17,13 +17,13 @@
 
 ### 1、用户模块
 
-![image-20240410234349302](./images/er-user-module.png)
+![er-user-module](./images/er-user-module.png)
 
 在用户模块，围绕`用户`实体，需要存储用户的基本资料（用户名、头像等）。由于本项目为微信小程序应用，需要同步存储用户的`OpenID`属性。同时用户与用户之间存在`关注/被关注`的多对多的实体自联系。
 
 ### 2、主功能模块
 
-![image-20240411000713895](./images/er-main-module.png)
+![er-main-module](./images/er-main-module.png)
 
 在此模块中，体现了`用户`、`账单`、`笔记`、`合集`和`收藏夹`多个实体间的关系，`用户`作为核心。可以分为两个子模块：
 
@@ -38,7 +38,7 @@
 
 ### 3、笔记模块
 
-![image-20240411001733352](./images/er-note-module.png)
+![er-note-module](./images/er-note-module.png)
 
 在此模块，主要是`用户`、`笔记`和`评论`几个实体的联系。
 
@@ -50,7 +50,7 @@
 
 ### 4、通知模块
 
-![image-20240411002801421](./images/er-notice-module.png)
+![er-notice-module](./images/er-notice-module.png)
 
 在通知模块，主要存储用户收到的通知。可以分为五大类：
 
@@ -62,7 +62,7 @@
 
 ### 5、总览
 
-![image-20240411004251773](./images/er.png)
+![er](./images/er.png)
 
 ## 三、逻辑结构设计（表）
 
